@@ -1,0 +1,34 @@
+html
+	head
+		//- bower:css
+		link(rel='stylesheet', href='/lib/bootstrap/dist/css/bootstrap.css')
+		link(rel='stylesheet', href='/lib/font-awesome/css/font-awesome.min.css')
+		//- endbower
+
+		//- bower:js
+		script(src='/lib/jquery/dist/jquery.js')
+		script(src='/lib/bootstrap/dist/js/bootstrap.js')
+		//- endbower
+
+		//- inject:css
+		link(rel="stylesheet", href="/css/styles.css")
+		//- endinject
+
+		//- inject:js
+		script(src="/js/scripts.js")
+		//- endinject
+		meta(name='generator' content='Bootply')
+		meta(name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1') 
+		title= title
+	body(class='myClass')				
+		//- header
+		div(id='top-nav', class='navbar navbar-inverse navbar-static-top')
+			div(class='navbar-header')
+				button(class='navbar-toggle' type='button' data-toggle='collapse' data-target='.navbar-collapse')
+					span(class='icon-bar')
+					span(class='icon-bar')
+					span(class='icon-bar')
+				each nav in navBar
+					a(class='navbar-brand' href=nav.Link)= nav.Text
+		//-endheader
+		

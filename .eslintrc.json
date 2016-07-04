@@ -3,14 +3,18 @@
     "ecmaVersion": 6,
     "ecmaFeatures": {
       "experimentalObjectRestSpread": true,
-      "jsx": true
+      "modules": true,
+      "jsx": true,
+      "arrowFunctions": true,
+      "blockBindings": true
     },
     "sourceType": "module"
   },
 
   "env": {
-    "es6": true,
-    "node": true
+    "browser": true,    
+    "node": true,
+    "es6": true
   },
 
   "plugins": [
@@ -21,7 +25,8 @@
   "globals": {
     "document": false,
     "navigator": false,
-    "window": false
+    "window": false,
+    "$": true
   },
 
   "rules": {
@@ -125,7 +130,7 @@
     "operator-linebreak": [2, "after", { "overrides": { "?": "before", ":": "before" } }],
     "padded-blocks": [2, "never"],
     "quotes": [2, "single", "avoid-escape"],
-    "semi": ["error", "always"],
+    "semi": [2, "never"],
     "semi-spacing": [2, { "before": false, "after": true }],
     "space-before-blocks": [2, "always"],
     "space-before-function-paren": [2, "always"],
