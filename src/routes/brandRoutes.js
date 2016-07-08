@@ -1,15 +1,18 @@
 'use strict'
 
-let express = require('express')
-let brandsRouter = express.Router()
+const express = require('express')
+const brandsRouter = express.Router()
 
-let router = (nav) => {
-  brandsRouter.get('/', (req, res) => {
-    res.render('brands/index', {
-      title: 'Marcas',
-      navBar: nav
+const router = (nav) => {
+  brandsRouter.route('/')
+    .get((req, res) => {
+      res.render('brands/index', {
+        title: 'Marcas',
+        navBar: nav
+      })
     })
-  })
+
+  return brandsRouter
 }
 
-module.exports = router
+module.exports = exports = router

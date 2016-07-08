@@ -2,22 +2,8 @@
 
 const gulp = require('gulp')
 const nodemon = require('gulp-nodemon')
-const eslint = require('gulp-eslint')
 
-let jsFiles = ['**/*.js', '!node_modules/**', '!public/lib/**']
-
-gulp.task('style', () => {
-  return gulp.src(jsFiles)
-        .pipe(eslint())
-        .pipe(eslint.format('node_modules/eslint-path-formatter'))
-        .pipe(eslint.failAfterError())
-        .pipe(eslint.result(result => {
-          console.log(`ESLint result: ${result.filePath}`)
-          console.log(`# Messages: ${result.messages.length}`)
-          console.log(`# Warnings: ${result.warningCount}`)
-          console.log(`# Errors: ${result.errorCount}`)
-        }))
-})
+let jsFiles = ['**/*.js', '!node_modules/**', '!public/lib/**', '!public/js/lib/**']
 
 gulp.task('inject', () => {
   let wiredep = require('wiredep').stream
@@ -25,7 +11,8 @@ gulp.task('inject', () => {
   let injectSrc = gulp.src(
     [
       './public/css/*.css',
-      './public/js/*.js'
+      './public/js/*.js',
+      './public/js/lib/*.js'
     ], {read: false})
   let injectOptions = {
     ignorePath: '/public'
@@ -37,12 +24,12 @@ gulp.task('inject', () => {
   }
 
   return gulp.src('./src/views/*.jade')
-  .pipe(wiredep(options))
-  .pipe(inject(injectSrc, injectOptions))
-  .pipe(gulp.dest('./src/views'))
+    .pipe(wiredep(options))
+    .pipe(inject(injectSrc, injectOptions))
+    .pipe(gulp.dest('./src/views'))
 })
 
-gulp.task('serve', ['style', 'inject'], () => {
+gulp.task('serve', ['inject'], () => {
   let options = {
     script: 'app.js',
     delayTime: 1,
@@ -50,14 +37,13 @@ gulp.task('serve', ['style', 'inject'], () => {
       'PORT': 5000
     },
     watch: jsFiles,
-    ignore:
-    [
+    ignore: [
       './node_modules/**',
       './public/lib/**'
     ]
   }
   return nodemon(options)
-        .on('restart', (ev) => {
-          console.log('Restarting...')
-        })
+    .on('restart', (ev) => {
+      console.log('Restarting...')
+    })
 })
