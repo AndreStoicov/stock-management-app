@@ -1,66 +1,89 @@
 html
-	head
-		//- bower:css
-		link(rel='stylesheet', href='/lib/bootstrap/dist/css/bootstrap.min.css')
-		link(rel='stylesheet', href='/lib/font-awesome/css/font-awesome.min.css')
-		//- endbower
+    head
+        //- bower:css
+        link(rel='stylesheet', href='/lib/bootstrap/dist/css/bootstrap.min.css')
+        link(rel='stylesheet', href='/lib/font-awesome/css/font-awesome.min.css')
+        //- endbower
 
-		//- bower:js
-		script(src='/lib/jquery/dist/jquery.js')
-		script(src='/lib/bootstrap/dist/js/bootstrap.js')
-		//- endbower
+        //- bower:js
+        script(src='/lib/jquery/dist/jquery.js')
+        script(src='/lib/bootstrap/dist/js/bootstrap.js')
+        //- endbower
 
-		//- inject:css
-		link(rel="stylesheet", href="/css/form-elements.css")
-		link(rel="stylesheet", href="/css/styles.css")
-		//- endinject
+        //- inject:css
+        link(rel="stylesheet", href="/css/form-elements.css")
+        link(rel="stylesheet", href="/css/styles.css")
+        //- endinject
 
-		//- inject:js		
-		script(src="/js/scripts.js")		
-		script(src="/js/lib/jquery.backstretch.js")		
-		script(src="/js/lib/jquery.backstretch.min.js")		
-		//- endinject
-		meta(name='generator' content='Bootply')
-		meta(name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1') 
-		title= title
-	body(class='myClass')
-		//- header
-		div(id='top-nav', class='navbar navbar-inverse navbar-static-top')
-			div(class='navbar-header')
-				button(class='navbar-toggle' type='button' data-toggle='collapse' data-target='.navbar-collapse')
-					span(class='icon-bar')
-					span(class='icon-bar')
-					span(class='icon-bar')
-				each nav in navBar
-					a(class='navbar-brand' href=nav.Link)= nav.Text
-			div(class="navbar-collapse collapse")
-				ul(class="nav navbar-nav navbar-right")
-					li
-						a(class="launch-modal" href="#"  data-modal-id="modal-register")
-							i(class="glyphicon glyphicon-user") Register
-		//- modeal register
-		div(class="modal fade" id="modal-register" tabindex="-1" role="dialog" aria-labelledby="modal-register-label" aria-hidden="true")
-			div(class="modal-dialog")
-				div(class="modal-content")
-					div(class="modal-header")
-						button(type="button" class="close" data-dismiss="modal")
-							span(aria-hidden="true")
-							span(class="sr-only") Close
-						h3(class="modal-title" id="modal-register-label") Register
-						p Fill in the form below to get instant access:
-					
-					div(class="modal-body")
-						form(role="form" action="/auth/signUp" method="post" class="registration-form")
-							div(class="form-group")
-								label(class="sr-only" for="formFirstName") 
-								input(type="text" name="formFirstName" placeholder="First name..." class="form-first-name form-control" id="formFirstName")
-							div(class="form-group")
-								label(class="sr-only" for="formLastName")
-								input(type="text" name="formLastName" placeholder="Last name..." class="form-last-name form-control" id="formLastName")
-							div(class="form-group")
-								label(class="sr-only" for="formEmail")
-								input(type="text" name="formEmail" placeholder="Email..." class="form-email form-control" id="formEmail")
-							div(class="form-group")
-								label(class="sr-only" for="formPassword")
-								input(type="password" name="formPassword" placeholder="Password" class="form-control" id="formPassword")							
-							button(type="submit" class="btn") Sign me up!		
+        //- inject:js		
+        script(src="/js/scripts.js")		
+        script(src="/js/lib/jquery.backstretch.js")		
+        script(src="/js/lib/jquery.backstretch.min.js")		
+        //- endinject
+        meta(name='generator' content='Bootply')
+        meta(name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1') 
+        title= title
+    body(class='myClass')
+        //- header
+        div(id='top-nav', class='navbar navbar-inverse navbar-static-top')
+            div(class='navbar-header')
+                button(class='navbar-toggle' type='button' data-toggle='collapse' data-target='.navbar-collapse')
+                    span(class='icon-bar')
+                    span(class='icon-bar')
+                    span(class='icon-bar')
+                each nav in navBar
+                    a(class='navbar-brand' href=nav.Link)= nav.Text
+            div(class="navbar-collapse collapse")
+                ul(class="nav navbar-nav navbar-right")
+                    li
+                        a(class="launch-modal" href="#"  data-modal-id="modal-register")
+                            i(class="glyphicon glyphicon-user") Register
+                    li
+                        a(class="launch-modal" href="#"  data-modal-id="modal-login")
+                            i(class="glyphicon glyphicon-user") Login
+        //- modeal register
+        div(class="modal fade" id="modal-register" tabindex="-1" role="dialog" aria-labelledby="modal-register-label" aria-hidden="true")
+            div(class="modal-dialog")
+                div(class="modal-content")
+                    div(class="modal-header")
+                        button(type="button" class="close" data-dismiss="modal")
+                            span(aria-hidden="true")
+                            span(class="sr-only") Close
+                        h3(class="modal-title" id="modal-register-label") Register
+                        p Fill in the form below to get instant access:
+                    
+                    div(class="modal-body")
+                        form(role="form" action="/auth/signUp" method="post" class="registration-form")
+                            div(class="form-group")
+                                label(class="sr-only" for="formFirstName") 
+                                input(type="text" name="formFirstName" placeholder="First name..." class="form-first-name form-control" id="formFirstName")
+                            div(class="form-group")
+                                label(class="sr-only" for="formLastName")
+                                input(type="text" name="formLastName" placeholder="Last name..." class="form-last-name form-control" id="formLastName")
+                            div(class="form-group")
+                                label(class="sr-only" for="formEmail")
+                                input(type="text" name="formEmail" placeholder="Email..." class="form-email form-control" id="formEmail")
+                            div(class="form-group")
+                                label(class="sr-only" for="formPassword")
+                                input(type="password" name="formPassword" placeholder="Password" class="form-control" id="formPassword")							
+                            button(type="submit" class="btn") Sign me up!
+        //- modeal Login
+        div(class="modal fade" id="modal-login" tabindex="-1" role="dialog" aria-labelledby="modal-login-label" aria-hidden="true")
+            div(class="modal-dialog")
+                div(class="modal-content")
+                    div(class="modal-header")
+                        button(type="button" class="close" data-dismiss="modal")
+                            span(aria-hidden="true")
+                            span(class="sr-only") Close
+                        h3(class="modal-title" id="modal-login-label") Login
+                        p Fill in the form below to login:
+                    
+                    div(class="modal-body")
+                        form(role="form" action="/auth/signIn" method="post" class="registration-form")							
+                            div(class="form-group")
+                                label(class="sr-only" for="formLoginEmail")
+                                input(type="text" name="formLoginEmail" placeholder="Email..." class="form-email form-control" id="formLoginEmail")
+                            div(class="form-group")
+                                label(class="sr-only" for="formLoginPassword")
+                                input(type="password" name="formLoginPassword" placeholder="Password" class="form-control" id="formLoginPassword")							
+                            button(type="submit" class="btn") Sign me in!

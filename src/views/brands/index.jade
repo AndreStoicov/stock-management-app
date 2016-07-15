@@ -31,4 +31,6 @@ html
 				each nav in navBar
 					a(class='navbar-brand' href=nav.Link)= nav.Text
 		//-endheader
-		
+		each brand in brands
+			p= brand.name
+			

@@ -2,37 +2,31 @@
 
 const express = require('express')
 const authRouter = express.Router()
-const User = require('../models/user').User
-const Promise = require('bluebird')
-const co = Promise.coroutine
+const passport = require('passport')
 
 const router = () => {
+  const userCtrl = require('../controllers/user')()
+
   authRouter.route('/signUp')
-    .post(co(function * (req, res, next) {
-      const user = yield User.findOneAsync({
-        email: req.body.formEmail
-      })
+    .post(userCtrl.signUp)
 
-      if (user) {
-        return res.send('User já existe!')
-      }
+  authRouter.route('/signIn')
+    .post(passport.authenticate('local', {
+      failureRedirect: '/'
+    }), (req, res) => {
+      res.redirect('/auth/profile')
+    })
 
-      const newUser = new User({
-        firstName: req.body.formFirstName,
-        lastName: req.body.formLastName,
-        email: req.body.formEmail,
-        password: req.body.formPassword
-      })
-
-      const createdUser = yield User.createAsync(newUser)
-
-      req.login(createdUser, () => {
-        res.redirect('/auth/profile')
-      })
-    }))
   authRouter.route('/profile')
+    .all((req, res, next) => {
+      if (!req.user) {
+        res.redirect('/falhou')
+      }
+      next()
+    })
     .get((req, res) => {
-      res.json(req.user)
+      console.log(req.user)
+      res.redirect('/')
     })
 
   return authRouter
